@@ -28,7 +28,7 @@ public class BlueprintAPIController {
     BlueprintsServices services;
 
     @RequestMapping(method = RequestMethod.GET)
-    public ResponseEntity<?> manejadorBlueprints(){
+    public ResponseEntity<?> getBlueprints(){
 
         try {
             //obtener datos que se enviarán a través del API
@@ -39,7 +39,7 @@ public class BlueprintAPIController {
         }
     }
     @RequestMapping(value="/{author}", method = RequestMethod.GET)
-    public ResponseEntity<?>  manejadorBlueprintsByAuthor(@PathVariable("author") String author){
+    public ResponseEntity<?>  getBlueprintsByAuthor(@PathVariable("author") String author){
 
         try {
             //obtener datos que se enviarán a través del API
@@ -51,7 +51,7 @@ public class BlueprintAPIController {
     }
 
     @RequestMapping(value="/{author}/{name}", method = RequestMethod.GET)
-    public ResponseEntity<?>  manejadorBlueprint(@PathVariable("author") String author,@PathVariable("name") String name ){
+    public ResponseEntity<?>  getBlueprintsByNameAndAuthor(@PathVariable("author") String author,@PathVariable("name") String name ){
         try {
             //obtener datos que se enviarán a través del API
             return new ResponseEntity<>(services.getBlueprint(author,name), HttpStatus.ACCEPTED);
@@ -63,7 +63,7 @@ public class BlueprintAPIController {
 
     @RequestMapping(method = RequestMethod.POST)
     @ResponseBody
-    public ResponseEntity<?> manejadorPostBlueprint(@RequestBody Blueprint bp){
+    public ResponseEntity<?> postBlueprint(@RequestBody Blueprint bp){
         try {
             services.addNewBlueprint(bp);
             return new ResponseEntity<>(HttpStatus.CREATED);
@@ -75,9 +75,20 @@ public class BlueprintAPIController {
 
     @RequestMapping(value="/{author}/{name}",method = RequestMethod.PUT)
     @ResponseBody
-    public synchronized ResponseEntity<?> manejadorPutBlueprint(@PathVariable("author") String author,@PathVariable("name") String name,@RequestBody Blueprint bp ) {
+    public synchronized ResponseEntity<?> putBlueprint(@PathVariable("author") String author,@PathVariable("name") String name,@RequestBody Blueprint bp ) {
         try {
             services.updateBlueprint(bp,author,name);
+            return new ResponseEntity<>(HttpStatus.ACCEPTED);
+        } catch (Exception ex) {
+            Logger.getLogger(BlueprintAPIController.class.getName()).log(Level.SEVERE, null, ex);
+            return new ResponseEntity<>( HttpStatus.NOT_FOUND);
+        }
+    }
+
+    @RequestMapping(value="/{author}/{name}",method = RequestMethod.DELETE)
+    public synchronized ResponseEntity<?> deleteBlueprint(@PathVariable("author") String author,@PathVariable("name") String name) {
+        try {
+            services.deleteBlueprint(author,name);
             return new ResponseEntity<>(HttpStatus.ACCEPTED);
         } catch (Exception ex) {
             Logger.getLogger(BlueprintAPIController.class.getName()).log(Level.SEVERE, null, ex);

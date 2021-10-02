@@ -20,13 +20,15 @@
                     <td>
                         <center>
                             <FONT COLOR="black"><h1>Blueprints</h1></FONT>
-                            <FONT COLOR="black"><h5>Autor:
-                            <input type="text" id="autor"></h5></FONT>
+                            <FONT COLOR="black"><h5>Autor:<input type="text" id="autor"></h5></FONT>
+                            <div id="blueprint" style="display:none"><FONT COLOR="black"><h5>Blueprint name:<input type="text" id="newblueprint"></h5></FONT></div>
                         </center>
                     <td>
                         <center>
                             <br><br>
                             <button class="btn btn-primary" id="Get blueprints" onclick="app.plansAuthor()">Get blueprints</button>
+                            <br><br>
+                            <button class="btn btn-info" id="New blueprints" onclick="app.newblueprint()" >Create new blueprint</button>
                         </center>
                     </td>
                 </tr>
@@ -60,6 +62,10 @@
                             <h5><FONT COLOR="black"><label>Current blueprint:</label></FONT>
                                 <FONT COLOR="black"><label id="planoLabel"></label></FONT></h5>
                             <canvas id="myCanvas" width="480" height="480" style="border:1px solid #000000" background= "solid #FFFFFF"></canvas>
+                            <br><br>
+                            <button class="btn btn-success" id="Post" onclick="app.savePlan()">Save/Update</button>
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            <button class="btn btn-danger" id="Delete" onclick="app.deleteBlueprint()">Delete</button>
                         </center>
                     </td>
                 </tr>

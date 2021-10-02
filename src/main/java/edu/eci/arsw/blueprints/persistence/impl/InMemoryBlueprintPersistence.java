@@ -93,4 +93,9 @@ public class InMemoryBlueprintPersistence implements BlueprintsPersistence{
         oldbp.setPoints(bp.getPoints());
     }
 
+    @Override
+    public void deleteBlueprint(String author, String name) {
+        blueprints.keySet().remove(new Tuple<>(author,name));
+    }
+
 }

@@ -1,13 +1,5 @@
 var apiclient=(function () {
     var url='http://localhost:8080/blueprints';
-    function drawPlan(name,obra){
-        console.log($.get(url+"/"+name+"/"+obra));
-        $.get(url+"/"+name+"/"+obra).then(responseJSON=>{
-            console.log(responseJSON);
-            mockdata=responseJSON;
-        })
-        console.log(mockdata);
-    }
     return{
         getBlueprintsByAuthor:function(name, callback) {
             $.get(url+"/"+name).then(responseJSON=>{
@@ -22,6 +14,29 @@ var apiclient=(function () {
                     responseJSON
                 )
             })
+        },
+        putBlueprints:function(autor,obra,blueprintAct,callback){
+            $.ajax({
+                url: url+"/"+autor+"/"+obra,
+                type: 'PUT',
+                data: JSON.stringify(blueprintAct),
+                contentType: "application/json"
+            }).then((responseJSON)=>apiclient.getBlueprintsByAuthor(autor,callback))
+        },
+        postBlueprints:function(autor,blueprintAct,callback){
+            $.ajax({
+                url: url,
+                type: 'POST',
+                data: JSON.stringify(blueprintAct),
+                contentType: "application/json"
+            }).then((responseJSON)=>apiclient.getBlueprintsByAuthor(autor,callback))
+        },
+        deleteBlueprints:function(autor,obra,callback){
+            $.ajax({
+                url: url+"/"+autor+"/"+obra,
+                type: 'DELETE',
+                contentType: "application/json"
+            }).then((responseJSON)=>apiclient.getBlueprintsByAuthor(autor,callback))
         }
     }
 })();
