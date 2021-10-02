@@ -1,7 +1,6 @@
 var apiclient=(function () {
-    var url=(window.location.href).split('/')[2];
+    var url="http://"+((window.location.href).split('/')[2])+"/blueprints";
     console.log(url);
-    var url='http://localhost:8080/blueprints';
     return{
         getBlueprintsByAuthor:function(name, callback) {
             $.get(url+"/"+name).then(responseJSON=>{

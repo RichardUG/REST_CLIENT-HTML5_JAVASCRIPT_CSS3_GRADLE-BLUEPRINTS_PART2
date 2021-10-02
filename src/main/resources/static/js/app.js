@@ -35,7 +35,7 @@ app= (function (){
             var acty = null;
             var c = document.getElementById("myCanvas");
             var ctx = c.getContext("2d");
-            ctx.clearRect(0, 0, 400, 400);
+            ctx.clearRect(0, 0, 450, 450);
             ctx.beginPath();
             ctx.fillStyle = "white";
             console.log(myCanvas.width)
@@ -127,7 +127,7 @@ app= (function (){
     function borrar(){
         var c = document.getElementById("myCanvas");
         var ctx = c.getContext("2d");
-        ctx.clearRect(0, 0, 400, 400);
+        ctx.clearRect(0, 0, 450, 450);
         ctx.beginPath();
         ctx.fillStyle = "white";
         console.log(myCanvas.width)
