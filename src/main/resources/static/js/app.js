@@ -177,7 +177,7 @@ app= (function (){
     };
 })();
 window.onload = function(){
-    document.body.style.zoom = "100%";
+    document.body.style.zoom = "85%";
     var myCanvas = document.getElementById("myCanvas");
     var ctx = myCanvas.getContext("2d");
     ctx.fillStyle = "white";
