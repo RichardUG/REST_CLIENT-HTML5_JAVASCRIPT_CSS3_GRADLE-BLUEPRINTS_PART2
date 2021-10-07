@@ -273,3 +273,31 @@ Este laboratorio tiene como fin, actualizar en Front para que se pueda comunicar
 	* Haga DELETE del recurso correspondiente.
 	* Haga GET de los planos ahora disponibles.
 
+	Implementamos la funcion ```deleteBlueprints()``` que realizara la petición delete
+	
+	```js
+	deleteBlueprints:function(autor,obra,callback){
+            $.ajax({
+                url: url+"/"+autor+"/"+obra,
+                type: 'DELETE',
+                contentType: "application/json"
+            }).then((responseJSON)=>apiclient.getBlueprintsByAuthor(autor,callback))
+        }
+	```
+	
+	Después implementamos la función ```deleteBlueprints()``` la cual se ejecutara al oprimir el boton delete, que primero ejecutara el metodo ```borrar``` para dejar en blanco el canvas y posteriormente invocara la función ```deleteBlueprints()``` el cual ejecutara la petición delete, con el nombre del author y el nombre del plano
+	
+	```js
+	deleteBlueprint: function(){
+            borrar();
+            api.deleteBlueprints(author,obra,_funcModify);
+        }
+	```
+	
+# Despliegue en Heroku
+
+* Oprima el siguiente boton para ir al despliegue en heroku
+
+> [![](/img/deploy.PNG)](http://restclienthtml5javascriptcss32.herokuapp.com/)
+	
+
